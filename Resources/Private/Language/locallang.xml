@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for the Modern FAQ Cat Menu extension in the FRONTEND</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="tx_irfaqcatmenu_domain_model_modernfaqcatmenu">ModernFaqCatMenu</label>
+			<label index="tx_irfaqcatmenu_domain_model_modernfaqcatmenu.parentcategory">parentcategory</label>
+		</languageKey>
+	</data>
+</T3locallang>

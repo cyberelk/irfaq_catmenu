@@ -1,0 +1,14 @@
+config.tx_extbase{
+    persistence{
+        classes{
+
+            Tx_IrfaqCatmenu_Domain_Model_ModernFaqCatMenu {
+                mapping {
+                    tableName = tx_irfaq_cat
+                    recordType = Tx_IrfaqCatmenu_ModernFaqCatMenu
+                }
+            }
+            
+    	}
+    }
+}

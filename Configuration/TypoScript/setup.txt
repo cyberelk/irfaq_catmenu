@@ -1,0 +1,39 @@
+plugin.tx_irfaqcatmenu {
+	view {
+		templateRootPath = {$plugin.tx_irfaqcatmenu.view.templateRootPath}
+		partialRootPath = {$plugin.tx_irfaqcatmenu.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_irfaqcatmenu.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_irfaqcatmenu.persistence.storagePid}
+	}
+	features {
+		# uncomment the following line to enable the new Property Mapper.
+		# rewrittenPropertyMapper = 1
+	}
+}
+
+plugin.tx_irfaqcatmenu._CSS_DEFAULT_STYLE (
+	textarea.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+
+	input.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+
+	.tx-irfaq-catmenu table {
+		border-collapse:separate;
+		border-spacing:10px;
+	}
+
+	.tx-irfaq-catmenu table th {
+		font-weight:bold;
+	}
+
+	.tx-irfaq-catmenu table td {
+		vertical-align:top;
+	}
+)
