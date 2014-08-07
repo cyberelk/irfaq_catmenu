@@ -31,34 +31,7 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Tx_IrfaqCatmenu_Controller_ModernFaqCatMenuController extends Tx_Extbase_MVC_Controller_ActionController {
-
-	/**
-	 * modernFaqCatMenuRepository
-	 *
-	 * @var Tx_IrfaqCatmenu_Domain_Repository_ModernFaqCatMenuRepository
-	 */
-	protected $modernFaqCatMenuRepository;
-
-	/**
-	 * injectModernFaqCatMenuRepository
-	 *
-	 * @param Tx_IrfaqCatmenu_Domain_Repository_ModernFaqCatMenuRepository $modernFaqCatMenuRepository
-	 * @return void
-	 */
-	public function injectModernFaqCatMenuRepository(Tx_IrfaqCatmenu_Domain_Repository_ModernFaqCatMenuRepository $modernFaqCatMenuRepository) {
-		$this->modernFaqCatMenuRepository = $modernFaqCatMenuRepository;
-	}
-
-	/**
-	 * action list
-	 *
-	 * @return void
-	 */
-	public function listAction() {
-		$modernFaqCatMenus = $this->modernFaqCatMenuRepository->findAll();
-		$this->view->assign('modernFaqCatMenus', $modernFaqCatMenus);
-	}
+class Tx_IrfaqCatmenu_Domain_Repository_CatMenuRepository extends Tx_Extbase_Persistence_Repository {
 
 }
 ?>

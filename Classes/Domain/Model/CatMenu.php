@@ -31,7 +31,14 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Tx_IrfaqCatmenu_Domain_Model_ModernFaqCatMenu extends Tx_Extbase_DomainObject_AbstractEntity {
+class Tx_IrfaqCatmenu_Domain_Model_CatMenu extends Tx_Extbase_DomainObject_AbstractEntity {
+
+	/**
+	 * title
+	 *
+	 * @var string
+	 */
+	protected $title;
 
 	/**
 	 * parentcategory
@@ -41,12 +48,31 @@ class Tx_IrfaqCatmenu_Domain_Model_ModernFaqCatMenu extends Tx_Extbase_DomainObj
 	protected $parentcategory;
 
 	/**
+	 * Returns the title
+	 *
+	 * @return string title
+	 */
+	public function getTitle(){
+		return $this->title;
+	}
+
+	/**
 	 * Returns the parentcategory
 	 *
 	 * @return integer $parentcategory
 	 */
 	public function getParentcategory() {
 		return $this->parentcategory;
+	}
+
+	/**
+	 * Sets the title
+	 *
+	 * @param string title
+	 * @return void
+	 */
+	public function setTitle($title){
+		$this->title = $title;
 	}
 
 	/**

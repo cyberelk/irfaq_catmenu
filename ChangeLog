@@ -1,0 +1,10 @@
+2014-08-05 Jari-Hermann Ernst, M.A.  <jari-hermann.ernst@bad-gmbh.de> V0.0.0
+
+	* Initial setp after domain modelling w/ ExtBuilder
+	* added Changelog
+	* added TCA for the new field parentcategory for table tx_irfaq_cat
+	* refactored the domain modell
+	* added the mapping for table ir_faq_cat too setup.txt
+	* added the html output of what ist expected as an outcome to the fliud
+	  template and added a table to give back the result of the list action
+	  in the controller

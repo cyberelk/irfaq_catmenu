@@ -6,6 +6,18 @@ plugin.tx_irfaqcatmenu {
 	}
 	persistence {
 		storagePid = {$plugin.tx_irfaqcatmenu.persistence.storagePid}
+		classes {
+			Tx_IrfaqCatmenu_Domain_Model_CatMenu {
+				mapping {
+					tableName = tx_irfaq_cat
+					recordType = Tx_IrfaqCatmenu_CatMenu
+					columns {
+						title.mapOnProperty = title
+						parentcategory.mapOnProperty = parentcategory
+					}
+				}
+			}
+		}
 	}
 	features {
 		# uncomment the following line to enable the new Property Mapper.

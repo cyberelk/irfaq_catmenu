@@ -15,21 +15,34 @@ $tmp_irfaq_catmenu_columns = array(
 
 	'parentcategory' => array(
 		'exclude' => 0,
-		'label' => 'LLL:EXT:irfaq_catmenu/Resources/Private/Language/locallang_db.xml:tx_irfaqcatmenu_domain_model_modernfaqcatmenu.parentcategory',
+		'label' => 'LLL:EXT:irfaq_catmenu/Resources/Private/Language/locallang_db.xml:tx_irfaqcatmenu_domain_model_catmenu.parentcategory',
 		'config' => array(
-			'type' => 'input',
-			'size' => 4,
-			'eval' => 'int'
+			'type' => 'select',
+			'renderMode' => 'tree',
+			'treeConfig' => array(
+				'parentField' => 'parentcategory',
+				'appearance' => array(
+					'expandAll' => 'true',
+					'showHeader' => 'true',
+				),
+			),
+			'foreign_table' => 'tx_irfaq_cat',
+			'foreign_table_where' => 'AND tx_irfaq_cat.pid=2140 ORDER BY tx_irfaq_cat.uid',
+			'size' => 30,
+			'minitems' => 0,
+			'maxitems' => 999,
 		),
 	),
 );
 
-t3lib_extMgm::addTCAcolumns('tx_irfaq_cat',$tmp_irfaq_catmenu_columns);
+t3lib_div::loadTCA('tx_irfaq_cat');
+t3lib_extMgm::addTCAcolumns('tx_irfaq_cat',$tmp_irfaq_catmenu_columns,1);
+t3lib_extMgm::addToAllTCAtypes('tx_irfaq_cat','parentcategory;;;;1-1-1');
 
-$TCA['tx_irfaq_cat']['columns'][$TCA['tx_irfaq_cat']['ctrl']['type']]['config']['items'][] = array('LLL:EXT:irfaq_catmenu/Resources/Private/Language/locallang_db.xml:tx_irfaq_cat.tx_extbase_type.Tx_IrfaqCatmenu_ModernFaqCatMenu','Tx_IrfaqCatmenu_ModernFaqCatMenu');
+$TCA['tx_irfaq_cat']['columns'][$TCA['tx_irfaq_cat']['ctrl']['type']]['config']['items'][] = array('LLL:EXT:irfaq_catmenu/Resources/Private/Language/locallang_db.xml:tx_irfaq_cat.tx_extbase_type.Tx_IrfaqCatmenu_CatMenu','Tx_IrfaqCatmenu_CatMenu');
 
-$TCA['tx_irfaq_cat']['types']['Tx_IrfaqCatmenu_ModernFaqCatMenu']['showitem'] = $TCA['tx_irfaq_cat']['types']['1']['showitem'];
-$TCA['tx_irfaq_cat']['types']['Tx_IrfaqCatmenu_ModernFaqCatMenu']['showitem'] .= ',--div--;LLL:EXT:irfaq_catmenu/Resources/Private/Language/locallang_db.xml:tx_irfaqcatmenu_domain_model_modernfaqcatmenu,';
-$TCA['tx_irfaq_cat']['types']['Tx_IrfaqCatmenu_ModernFaqCatMenu']['showitem'] .= 'parentcategory';
+$TCA['tx_irfaq_cat']['types']['Tx_IrfaqCatmenu_CatMenu']['showitem'] = $TCA['tx_irfaq_cat']['types']['1']['showitem'];
+$TCA['tx_irfaq_cat']['types']['Tx_IrfaqCatmenu_CatMenu']['showitem'] .= ',--div--;LLL:EXT:irfaq_catmenu/Resources/Private/Language/locallang_db.xml:tx_irfaqcatmenu_domain_model_catmenu,';
+$TCA['tx_irfaq_cat']['types']['Tx_IrfaqCatmenu_CatMenu']['showitem'] .= 'parentcategory';
 
 ?>

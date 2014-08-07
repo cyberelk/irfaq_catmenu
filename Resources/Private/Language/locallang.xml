@@ -6,8 +6,8 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
-			<label index="tx_irfaqcatmenu_domain_model_modernfaqcatmenu">ModernFaqCatMenu</label>
-			<label index="tx_irfaqcatmenu_domain_model_modernfaqcatmenu.parentcategory">parentcategory</label>
+			<label index="tx_irfaqcatmenu_domain_model_catmenu">ModernFaqCatMenu</label>
+			<label index="tx_irfaqcatmenu_domain_model_catmenu.parentcategory">parentcategory</label>
 		</languageKey>
 	</data>
 </T3locallang>

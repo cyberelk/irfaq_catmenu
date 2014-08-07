@@ -7,12 +7,12 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Pi1',
 	array(
-		'ModernFaqCatMenu' => 'list',
+		'CatMenu' => 'list',
 		
 	),
 	// non-cacheable actions
 	array(
-		'ModernFaqCatMenu' => '',
+		'CatMenu' => '',
 		
 	)
 );

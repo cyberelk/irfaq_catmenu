@@ -1,0 +1,77 @@
+<f:layout name="Default" />
+
+This Template is responsible for creating a table of domain objects.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        List.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+
+<f:flashMessages />
+
+    <!-- This is how it should look like in the end
+    <ul>
+        <li>Alle Kategorien</li>
+        <li>SAP<ul>
+            <li>Benutzer</li>
+            <li>Datenschutz</li>
+            <li>Allgemein</li>
+        </ul></li>
+        <li>IT<ul>
+            <li>Hardware</li>
+            <li>Software</li>
+            <li>eMail und Internet<lu>
+                <li>Thunderbird</li>
+                <li>Outlook</li>
+                <li>Firefox</li>
+            </lu></li>
+            <li>Sicherheitsrichtlinien</li>
+            <li>Open-Xchange</li>
+            <li>VPN-Zugriff</li>
+        </ul></li>
+        <li>Pr/ÖA<ul>
+            <li>Fitness First</li>
+            <li>Kfz-Werbung</li>
+        </ul></li>
+        <li>PM<ul>
+            <li>Darmkrebsscreening</li>
+            <li>DGUV V2</li>
+        </ul></li>
+        <li>Personal<ul>
+            <li>GBV Sucht</li>
+            <li>Mitarbeiterbefragung</li>
+            <li>MAB Gesundheitsbarometer</li>
+            <li>TV Kilometergeld</li>
+        </ul></li>
+        <li>Tools<ul>
+            <li>ISIS</li>
+            <li>TeamPoint</li>
+            <li>Neue Medien- PreSys 2.0</li>
+            <li>Reisekosten</li>
+        </ul></li>
+
+    </ul>-->
+
+<table  class="tx_irfaqcatmenu" >
+<tr>
+    <td>Category ID</td>
+    <td>Title</td>
+    <td>Parent Category ID</td>
+</tr>
+	<f:for each="{catMenus}" as="catMenu">
+		<tr>
+			<td>{catMenu.uid}</td>
+			<td>{catMenu.title}</td>
+			<td>{catMenu.parentcategory}</td>
+		</tr>
+	</f:for>
+</table>
+
+
+</f:section>

@@ -31,7 +31,37 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Tx_IrfaqCatmenu_Domain_Repository_ModernFaqCatMenuRepository extends Tx_Extbase_Persistence_Repository {
+class Tx_IrfaqCatmenu_Controller_CatMenuController extends Tx_Extbase_MVC_Controller_ActionController {
+
+	/**
+	 * catMenuRepository
+	 *
+	 * @var Tx_IrfaqCatmenu_Domain_Repository_CatMenuRepository
+	 */
+	protected $catMenuRepository = NULL;
+
+	/**
+	 * injectCatMenuRepository
+	 *
+	 * @param Tx_IrfaqCatmenu_Domain_Repository_CatMenuRepository $catMenuRepository
+	 * @return void
+	 */
+	public function injectCatMenuRepository(Tx_IrfaqCatmenu_Domain_Repository_CatMenuRepository $catMenuRepository) {
+		$this->catMenuRepository = $catMenuRepository;
+	}
+
+	/**
+	 * action list
+	 *
+	 * @return void
+	 */
+	public function listAction() {
+		$catMenus = $this->catMenuRepository->findAll();
+		$singevalue = $this->catMenuRepository->findByUid(3);
+		$this->view->assign('testText','Einfach mal was ausprobieren...');
+		$this->view->assign('catMenus', $catMenus);
+		$this->view->assign('test', $singleValue);
+	}
 
 }
 ?>
