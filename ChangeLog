@@ -1,3 +1,9 @@
+2014-08-08 Jari-Hermann Ernst, M.A.  <jari-hermann.ernst@bad-gmbh.de> V0.0.0
+
+	* clean up the the CatMenuController
+	* started the implementation of a UlViewHelper for the category menu
+	* clean up if the List view with the new view helper
+
 2014-08-05 Jari-Hermann Ernst, M.A.  <jari-hermann.ernst@bad-gmbh.de> V0.0.0
 
 	* Initial setp after domain modelling w/ ExtBuilder

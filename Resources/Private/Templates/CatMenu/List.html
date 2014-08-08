@@ -1,3 +1,5 @@
+{namespace jhe=Tx_IrfaqCatmenu_ViewHelpers}
+
 <f:layout name="Default" />
 
 This Template is responsible for creating a table of domain objects.
@@ -15,7 +17,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <f:flashMessages />
 
-    <!-- This is how it should look like in the end
+    <!-- This is how it should look like in the end-->
     <ul>
         <li>Alle Kategorien</li>
         <li>SAP<ul>
@@ -26,11 +28,11 @@ Otherwise your changes will be overwritten the next time you save the extension 
         <li>IT<ul>
             <li>Hardware</li>
             <li>Software</li>
-            <li>eMail und Internet<lu>
+            <li>eMail und Internet<ul>
                 <li>Thunderbird</li>
                 <li>Outlook</li>
                 <li>Firefox</li>
-            </lu></li>
+            </ul></li>
             <li>Sicherheitsrichtlinien</li>
             <li>Open-Xchange</li>
             <li>VPN-Zugriff</li>
@@ -56,22 +58,11 @@ Otherwise your changes will be overwritten the next time you save the extension 
             <li>Reisekosten</li>
         </ul></li>
 
-    </ul>-->
+    </ul>
 
-<table  class="tx_irfaqcatmenu" >
-<tr>
-    <td>Category ID</td>
-    <td>Title</td>
-    <td>Parent Category ID</td>
-</tr>
-	<f:for each="{catMenus}" as="catMenu">
-		<tr>
-			<td>{catMenu.uid}</td>
-			<td>{catMenu.title}</td>
-			<td>{catMenu.parentcategory}</td>
-		</tr>
-	</f:for>
-</table>
 
+<hr />
+
+    <jhe:ul catItems="{catMenus}"/>
 
 </f:section>

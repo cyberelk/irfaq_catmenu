@@ -57,10 +57,7 @@ class Tx_IrfaqCatmenu_Controller_CatMenuController extends Tx_Extbase_MVC_Contro
 	 */
 	public function listAction() {
 		$catMenus = $this->catMenuRepository->findAll();
-		$singevalue = $this->catMenuRepository->findByUid(3);
-		$this->view->assign('testText','Einfach mal was ausprobieren...');
 		$this->view->assign('catMenus', $catMenus);
-		$this->view->assign('test', $singleValue);
 	}
 
 }
