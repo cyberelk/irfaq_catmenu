@@ -9,6 +9,57 @@
 class Tx_IrfaqCatmenu_ViewHelpers_UlViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
 	/**
+	 * Reverses the string
+	 *
+	 * @param object $catItems
+	 * @return
+	 */
+	public function render($catItems) {
+
+		$firstLevelArr = NULL;
+		$categoryMenuArr = NULL;
+		$htmlOutput = NULL;
+
+		//get first level of categories
+		$firstLevelArr = $this->getChildCategoryItems($catItems);
+
+		//create arr of category items with all sub levels
+		$categoryMenuArr = $this->createCategoryItemArray($catItems, $firstLevelArr);
+
+		$htmlOutput = $this->generateHtmlOutput($categoryMenuArr);
+
+		return $htmlOutput;
+	}
+
+	public function createLinkWithCategoryParam($title, $uid){
+
+		$this->cObj = t3lib_div::makeInstance('tslib_cObj');
+
+		//https://local.teampoint.info/nbspnbsphilfenbspnbsp/faq-neu-admin-only.html?tx_irfaq_pi1%5Bcat%5D=3&cHash=d531cb715c579774672ac10234c39327
+		//https://local.teampoint.info/nbspnbsphilfenbspnbsp/faq-neu-admin-only.html?tx_irfaq_pi1%5Bcat%5D=5
+		$link = $this->cObj->getTypoLink($title, '6170', array('tx_irfaq_pi1[cat]' => $uid));
+
+		return $link;
+	}
+
+	public function generateHtmlOutput($categoryMenuArr){
+
+		$htmlOutput = '<ul>';
+
+		foreach($categoryMenuArr as $key => $categoryMenu){
+			$htmlOutput .= '<li>' . $this->createLinkWithCategoryParam($categoryMenu['title'], $key )  . '</li>';
+
+			if($categoryMenu['subLevel']){
+				$htmlOutput .= $this->generateHtmlOutput($categoryMenu['subLevel']);
+			}
+		}
+
+		$htmlOutput .= '</ul>';
+
+		return $htmlOutput;
+	}
+
+	/**
 	 * @param $catItems
 	 * @param null $pid
 	 * @return array
@@ -28,124 +79,21 @@ class Tx_IrfaqCatmenu_ViewHelpers_UlViewHelper extends Tx_Fluid_Core_ViewHelper_
 		return $categoryItemsArr;
 	}
 
-	public function checkForChildCategories($catItems, $uid){
+	public function createCategoryItemArray($catItems, $categoryItemArr){
 
-		$i = 0;
-
-		foreach($catItems as $categoryItem){
-			if($categoryItem->getParentcategory() == $uid){
-				$i++;
-			}
-		}
-
-		if($i > 0){
-			$check = TRUE;
-		} else {
-			$check = FALSE;
-		}
-
-		return $check;
-	}
-
-	public function checkIfCategoryItemHasSubItems($catItems, $categoryItemArr){
-
-		foreach ($categoryItemArr as $key => $value){
-
-			$subCategoriesArr = NULL;
-			$subCategoriesArr = $this->getChildCategoryItems($catItems, $key);
-
-			$categoryMenuArr[$key] = $value;
-
-			if($subCategoriesArr){
-				$categoryMenuArr[$key]['subLevel'] = $subCategoriesArr;
-
-				$this->getChildCategoryItems($catItems, $categoryMenuArr[$key]);
-			}
-
-		}
-
-		return $categoryMenuArr;
-	}
-
-	/**
-	 * Reverses the string
-	 *
-	 * @param object $catItems
-	 * @return
-	 */
-	public function render($catItems) {
-
-		$output = NULL;
-		$childCategories = NULL;
-		$firstLevelArr = NULL;
-
-		$categoryMenuArr = NULL;
-
-		//get first level of categories
-		$firstLevelArr = $this->getChildCategoryItems($catItems);
-
-		//create arr of category items with all sub levels
-		$categoryMenu = $this->createCategoryItemArray($catItems, $firstLevelArr);
-
-		//$categoryMenuArr = $this->checkIfCategoryItemHasSubItems($catItems, $firstLevelArr);
-
-		//var_dump($categoryMenu);
-
-		return NULL;
-
-	}
-
-	public function createCategoryItemArray($catItems, $firstLevelArr){
-
-		foreach($firstLevelArr as $uid => $categoryItemFirstLevel){
+		foreach($categoryItemArr as $uid => $categoryItemFirstLevel){
 			$childCategoryItemArr = $this->getChildCategoryItems($catItems, $uid);
-			//var_dump($childCategoryItemArr);
 
 			if($childCategoryItemArr){
-				$firstLevelArr[$uid]['subLevel'] = $childCategoryItemArr;
+				$categoryItemArr[$uid]['subLevel'] = $childCategoryItemArr;
 
-				foreach($childCategoryItemArr as $key => $value){
-					$subChildCategoryItemsArr = $this->getChildCategoryItems($catItems, $key);
-					//var_dump($subChildCategoryItemsArr);
-
-					if($subChildCategoryItemsArr){
-						$firstLevelArr[$uid]['subLevel'][$key]['subLevel'] = $subChildCategoryItemsArr;
-					} else {
-						$firstLevelArr[$uid]['subLevel'][$key]['subLevel'] = NULL;
-					}
-				}
+				$categoryItemArr[$uid]['subLevel'] = $this->createCategoryItemArray($catItems, $childCategoryItemArr);
 
 			} else {
-				$firstLevelArr[$uid]['subLevel'] = NULL;
+				$categoryItemArr[$uid]['subLevel'] = NULL;
 			}
 		}
 
-		var_dump($firstLevelArr);
-
-		//var_dump($childCategoryItemArr);
-
-		/*foreach ($categoryItemArr as $key => $value){
-
-			$subCategoriesArr = NULL;
-			$subCategoriesArr = $this->getChildCategoryItems($catItems, $key);
-
-			$categoryMenuArr[$key] = $value;
-
-			if($subCategoriesArr){
-				$categoryMenuArr[$key]['subLevel'] = $subCategoriesArr;
-
-				$this->getChildCategoryItems($catItems, $categoryMenuArr[$key]);
-			}
-
-		}*/
-
-
-
-
-
-
-
-		return NULL;
+		return $categoryItemArr;
 	}
-
 }

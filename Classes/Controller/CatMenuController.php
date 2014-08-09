@@ -56,6 +56,9 @@ class Tx_IrfaqCatmenu_Controller_CatMenuController extends Tx_Extbase_MVC_Contro
 	 * @return void
 	 */
 	public function listAction() {
+
+		$GLOBALS['TSFE']->reqCHash();
+
 		$catMenus = $this->catMenuRepository->findAll();
 		$this->view->assign('catMenus', $catMenus);
 	}

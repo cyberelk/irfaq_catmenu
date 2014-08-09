@@ -1,3 +1,10 @@
+2014-08-09 Jari-Hermann Ernst, M.A.  <jari-hermann.ernst@bad-gmbh.de> V0.0.0
+
+	* made the category menu array collector recursive
+	* general code refactoring
+	* generated the html output out of the collected data
+	* made the plugin non-cacheable
+
 2014-08-08 Jari-Hermann Ernst, M.A.  <jari-hermann.ernst@bad-gmbh.de> V0.0.0
 
 	* clean up the the CatMenuController
