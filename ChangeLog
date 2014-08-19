@@ -1,3 +1,13 @@
+2014-08-19 Jari-Hermann Ernst, M.A.  <jari-hermann.ernst@bad-gmbh.de> V0.1.0
+
+	* finishing first version deployed to live system
+	* added class for active category in ul view helper
+    * added css to setup,txt
+    * added tca settings for the category selector for $TCA['tx_irfaq_q']
+    * added a header div to the fluid template
+    * general code clean up
+    * set state to beta and version to 0.1.0
+
 2014-08-09 Jari-Hermann Ernst, M.A.  <jari-hermann.ernst@bad-gmbh.de> V0.0.0
 
 	* made the category menu array collector recursive

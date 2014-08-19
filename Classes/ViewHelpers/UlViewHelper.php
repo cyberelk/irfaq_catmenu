@@ -35,19 +35,27 @@ class Tx_IrfaqCatmenu_ViewHelpers_UlViewHelper extends Tx_Fluid_Core_ViewHelper_
 
 		$this->cObj = t3lib_div::makeInstance('tslib_cObj');
 
-		//https://local.teampoint.info/nbspnbsphilfenbspnbsp/faq-neu-admin-only.html?tx_irfaq_pi1%5Bcat%5D=3&cHash=d531cb715c579774672ac10234c39327
-		//https://local.teampoint.info/nbspnbsphilfenbspnbsp/faq-neu-admin-only.html?tx_irfaq_pi1%5Bcat%5D=5
 		$link = $this->cObj->getTypoLink($title, '6170', array('tx_irfaq_pi1[cat]' => $uid));
 
 		return $link;
 	}
 
 	public function generateHtmlOutput($categoryMenuArr){
+		$cat = NULL;
+
+		if($_GET['tx_irfaq_pi1']['cat']){
+			$cat = $_GET['tx_irfaq_pi1']['cat'];
+		}
 
 		$htmlOutput = '<ul>';
 
 		foreach($categoryMenuArr as $key => $categoryMenu){
-			$htmlOutput .= '<li>' . $this->createLinkWithCategoryParam($categoryMenu['title'], $key )  . '</li>';
+
+			if($key == $cat){
+				$htmlOutput .= '<li class="active">' . $this->createLinkWithCategoryParam($categoryMenu['title'], $key )  . '</li>';
+			} else {
+				$htmlOutput .= '<li>' . $this->createLinkWithCategoryParam($categoryMenu['title'], $key )  . '</li>';
+			}
 
 			if($categoryMenu['subLevel']){
 				$htmlOutput .= $this->generateHtmlOutput($categoryMenu['subLevel']);

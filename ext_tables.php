@@ -45,4 +45,18 @@ $TCA['tx_irfaq_cat']['types']['Tx_IrfaqCatmenu_CatMenu']['showitem'] = $TCA['tx_
 $TCA['tx_irfaq_cat']['types']['Tx_IrfaqCatmenu_CatMenu']['showitem'] .= ',--div--;LLL:EXT:irfaq_catmenu/Resources/Private/Language/locallang_db.xml:tx_irfaqcatmenu_domain_model_catmenu,';
 $TCA['tx_irfaq_cat']['types']['Tx_IrfaqCatmenu_CatMenu']['showitem'] .= 'parentcategory';
 
+//
+t3lib_div::loadTCA('tx_irfaq_q');
+
+$TCA['tx_irfaq_q']['columns']['cat']['config']['type'] = 'select';
+$TCA['tx_irfaq_q']['columns']['cat']['config']['renderMode'] = 'tree';
+$TCA['tx_irfaq_q']['columns']['cat']['config']['treeConfig']['parentField'] = 'parentcategory';
+$TCA['tx_irfaq_q']['columns']['cat']['config']['treeConfig']['appearance']['expandAll'] = 'true';
+$TCA['tx_irfaq_q']['columns']['cat']['config']['treeConfig']['appearance']['showHeader'] = 'true';
+$TCA['tx_irfaq_q']['columns']['cat']['config']['foreign_table'] = 'tx_irfaq_cat';
+$TCA['tx_irfaq_q']['columns']['cat']['config']['foreign_table_where'] = 'AND tx_irfaq_cat.pid=2140 ORDER BY tx_irfaq_cat.uid';
+$TCA['tx_irfaq_q']['columns']['cat']['config']['size'] = 30;
+$TCA['tx_irfaq_q']['columns']['cat']['config']['minitems'] = 0;
+$TCA['tx_irfaq_q']['columns']['cat']['config']['maxitems'] = 999;
+
 ?>

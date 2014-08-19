@@ -36,16 +36,62 @@ plugin.tx_irfaqcatmenu._CSS_DEFAULT_STYLE (
 		border: 1px #FF0000 solid;
 	}
 
-	.tx-irfaq-catmenu table {
-		border-collapse:separate;
-		border-spacing:10px;
+	.tx-irfaq-catmenu {}
+
+	.tx-irfaq-catmenu-header {
+		padding: 5px;
+		font-weight: bold;
+		color: #f2530c;
+    	background-color: #d3e4d5;
 	}
 
-	.tx-irfaq-catmenu table th {
-		font-weight:bold;
+    .tx-irfaq-catmenu ul {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+    }
+
+    .tx-irfaq-catmenu ul li {
+    	margin: 0;
+    	padding: 0;
+    	border-top: 1px solid #d3e4d5;
+    }
+
+	.tx-irfaq-catmenu ul li.active {
+		color: #f2530c;
+    	background-color: #d3e4d5;
 	}
 
-	.tx-irfaq-catmenu table td {
-		vertical-align:top;
-	}
+    .tx-irfaq-catmenu ul li a {
+    	display: block;
+    	padding: 5px;
+    	text-decoration: none;
+    	font-weight: bold;
+    	color: #000;
+    }
+
+    .tx-irfaq-catmenu ul li a:hover {
+    	color: #f2530c;
+    	background-color: #d3e4d5;
+    }
+
+    .tx-irfaq-catmenu ul ul li a {
+    	padding-left: 15px;
+    }
+
+    .tx-irfaq-catmenu ul ul ul li a {
+    	padding-left: 25px;
+    }
+
+    .tx-irfaq-catmenu ul ul ul ul li a {
+    	padding-left: 45px;
+    }
+
+    .tx-irfaq-catmenu ul ul ul ul ul li a {
+    	padding-left: 65px;
+    }
+
+    .tx-irfaq-catmenu ul ul ul ul ul ul li a {
+    	padding-left: 85px;
+    }
 )
