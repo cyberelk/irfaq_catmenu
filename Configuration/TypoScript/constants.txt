@@ -11,4 +11,9 @@ plugin.tx_irfaqcatmenu {
 		# cat=plugin.tx_irfaqcatmenu//a; type=string; label=Default storage PID
 		storagePid =
 	}
+    settings {
+        # cat=plugin.tx_irfaqcatmenu//a; type=string; label=Default list view PID
+        listViewPage =
+    }
+
 }

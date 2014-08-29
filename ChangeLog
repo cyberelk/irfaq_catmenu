@@ -1,3 +1,14 @@
+2014-08-29 Jari-Hermann Ernst, M.A.  <jari-hermann.ernst@bad-gmbh.de> V1.0.0
+
+	* added jquery lib (not used by now)
+    * added jquery code to List..html for manipulating the irfaq list
+      output without hacking the ext
+    * code refactoring in ext_localconf.php
+    * added a ts field to store the uid of the list view page
+    * little css changes
+    * changed the UlViewHelper so it can use the new TS settings
+    * build in a check if a GET param is given and how to handle it
+
 2014-08-19 Jari-Hermann Ernst, M.A.  <jari-hermann.ernst@bad-gmbh.de> V0.1.0
 
 	* finishing first version deployed to live system

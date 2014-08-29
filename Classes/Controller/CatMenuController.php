@@ -59,8 +59,23 @@ class Tx_IrfaqCatmenu_Controller_CatMenuController extends Tx_Extbase_MVC_Contro
 
 		$GLOBALS['TSFE']->reqCHash();
 
+        $cat = NULL;
+
+
+        if($_GET['tx_irfaq_pi1']['cat']){
+            $noCat = 0;
+            $cat = $_GET['tx_irfaq_pi1']['cat'];
+            $catTitle = $this->catMenuRepository->findByUid($cat);
+
+            $this->view->assign('catTitle', ' :: ' . $catTitle->getTitle());
+        } else {
+            $noCat = 1;
+        }
+
 		$catMenus = $this->catMenuRepository->findAll();
 		$this->view->assign('catMenus', $catMenus);
+        $this->view->assign('noCat',$noCat);
+
 	}
 
 }

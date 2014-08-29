@@ -20,4 +20,29 @@ Otherwise your changes will be overwritten the next time you save the extension 
     <div class="tx-irfaq-catmenu-header">Kategorien:</div>
     <jhe:ul catItems="{catMenus}"/>
 
+    <script type="application/javascript">
+        <![CDATA[
+            jQuery(function($){
+                //append  category title to ce h3
+                $('.tx-irfaq-pi1').parent().find('div h3').append("]]>{catTitle}<![CDATA[");
+
+                //check if any faq content is displayed on the page
+                var faq_content = $('.tx-irfaq-pi1 dl').html();
+                //if not, display default message
+                if(!faq_content){
+                    $('.tx-irfaq-pi1').html('');
+                    $('.tx-irfaq-pi1').append('<p>Für die ausgewählte Kategorie sind derzeit keine Fragen vorhanden!</p>');
+                }
+
+                //if no cat is selected (inital state) display no question but a default message instead
+                var noCat = ']]>{noCat}<![CDATA[';
+                if(noCat == 1){
+                    $('.tx-irfaq-pi1').html('');
+                    $('.tx-irfaq-pi1').append('<p>Bitte wählen Sie in der Navigation eine Kategorie aus!</p>');
+                }
+
+            });
+        ]]>
+    </script>
+
 </f:section>

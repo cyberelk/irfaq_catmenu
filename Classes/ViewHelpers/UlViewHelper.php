@@ -8,6 +8,12 @@
 
 class Tx_IrfaqCatmenu_ViewHelpers_UlViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
+    protected $configurationManager;
+
+    public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager) {
+        $this->configurationManager = $configurationManager;
+    }
+
 	/**
 	 * Reverses the string
 	 *
@@ -20,27 +26,29 @@ class Tx_IrfaqCatmenu_ViewHelpers_UlViewHelper extends Tx_Fluid_Core_ViewHelper_
 		$categoryMenuArr = NULL;
 		$htmlOutput = NULL;
 
+        $settings = $this->configurationManager->getConfiguration('Settings');
+
 		//get first level of categories
 		$firstLevelArr = $this->getChildCategoryItems($catItems);
 
 		//create arr of category items with all sub levels
 		$categoryMenuArr = $this->createCategoryItemArray($catItems, $firstLevelArr);
 
-		$htmlOutput = $this->generateHtmlOutput($categoryMenuArr);
+		$htmlOutput = $this->generateHtmlOutput($categoryMenuArr, $settings);
 
 		return $htmlOutput;
 	}
 
-	public function createLinkWithCategoryParam($title, $uid){
+	public function createLinkWithCategoryParam($title, $uid, $settings){
 
 		$this->cObj = t3lib_div::makeInstance('tslib_cObj');
 
-		$link = $this->cObj->getTypoLink($title, '6170', array('tx_irfaq_pi1[cat]' => $uid));
+ 		$link = $this->cObj->getTypoLink($title, $settings['listViewPage'], array('tx_irfaq_pi1[cat]' => $uid));
 
 		return $link;
 	}
 
-	public function generateHtmlOutput($categoryMenuArr){
+	public function generateHtmlOutput($categoryMenuArr, $settings){
 		$cat = NULL;
 
 		if($_GET['tx_irfaq_pi1']['cat']){
@@ -52,13 +60,13 @@ class Tx_IrfaqCatmenu_ViewHelpers_UlViewHelper extends Tx_Fluid_Core_ViewHelper_
 		foreach($categoryMenuArr as $key => $categoryMenu){
 
 			if($key == $cat){
-				$htmlOutput .= '<li class="active">' . $this->createLinkWithCategoryParam($categoryMenu['title'], $key )  . '</li>';
+				$htmlOutput .= '<li class="active">' . $this->createLinkWithCategoryParam($categoryMenu['title'], $key, $settings )  . '</li>';
 			} else {
-				$htmlOutput .= '<li>' . $this->createLinkWithCategoryParam($categoryMenu['title'], $key )  . '</li>';
+				$htmlOutput .= '<li>' . $this->createLinkWithCategoryParam($categoryMenu['title'], $key, $settings )  . '</li>';
 			}
 
 			if($categoryMenu['subLevel']){
-				$htmlOutput .= $this->generateHtmlOutput($categoryMenu['subLevel']);
+				$htmlOutput .= $this->generateHtmlOutput($categoryMenu['subLevel'], $settings);
 			}
 		}
 

@@ -46,3 +46,6 @@ Icon
 .idea/workspace.xml
 ExtensionBuilder.json
 .idea/php.xml
+.idea/codeStyleSettings.xml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/inspectionProfiles/Project_Default.xml

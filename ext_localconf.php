@@ -8,12 +8,10 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	'Pi1',
 	array(
 		'CatMenu' => 'list',
-		
 	),
 	// non-cacheable actions
 	array(
 		'CatMenu' => 'list',
-		
 	)
 );
 
