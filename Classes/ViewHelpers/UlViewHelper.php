@@ -25,11 +25,17 @@ class Tx_IrfaqCatmenu_ViewHelpers_UlViewHelper extends Tx_Fluid_Core_ViewHelper_
 		$firstLevelArr = NULL;
 		$categoryMenuArr = NULL;
 		$htmlOutput = NULL;
+        $entryPoint = intval(0);
 
         $settings = $this->configurationManager->getConfiguration('Settings');
+        $entryPoint = $settings['catSelection'];
 
 		//get first level of categories
-		$firstLevelArr = $this->getChildCategoryItems($catItems);
+        if($entryPoint){
+            $firstLevelArr = $this->getFirstLevelCategoryItems($catItems, $entryPoint);
+        } else {
+            $firstLevelArr = $this->getChildCategoryItems($catItems, $entryPoint);
+        }
 
 		//create arr of category items with all sub levels
 		$categoryMenuArr = $this->createCategoryItemArray($catItems, $firstLevelArr);
@@ -49,6 +55,7 @@ class Tx_IrfaqCatmenu_ViewHelpers_UlViewHelper extends Tx_Fluid_Core_ViewHelper_
 	}
 
 	public function generateHtmlOutput($categoryMenuArr, $settings){
+
 		$cat = NULL;
 
 		if($_GET['tx_irfaq_pi1']['cat']){
@@ -74,6 +81,26 @@ class Tx_IrfaqCatmenu_ViewHelpers_UlViewHelper extends Tx_Fluid_Core_ViewHelper_
 
 		return $htmlOutput;
 	}
+
+    /**
+     * @param $catItems
+     * @param null $pid
+     * @return array
+     */
+    public function getFirstLevelCategoryItems($catItems, $pid = NULL){
+        $categoryItemsArr = array();
+
+        foreach($catItems as $categoryItem){
+            if($categoryItem->getUid() == $pid){
+                $categoryItemsArr[$categoryItem->getUid()] = array(
+                    'title' => $categoryItem->getTitle(),
+                    'subLevel' => ''
+                );
+            }
+        }
+
+        return $categoryItemsArr;
+    }
 
 	/**
 	 * @param $catItems

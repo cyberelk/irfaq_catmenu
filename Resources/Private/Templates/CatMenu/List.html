@@ -17,7 +17,10 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <f:flashMessages />
 
-    <div class="tx-irfaq-catmenu-header">Kategorien:</div>
+    <f:if condition="{listTitle}">
+        <div class="tx-irfaq-catmenu-header">Kategorien:</div>
+    </f:if>
+
     <jhe:ul catItems="{catMenus}"/>
 
     <script type="application/javascript">

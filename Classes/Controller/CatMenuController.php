@@ -58,9 +58,11 @@ class Tx_IrfaqCatmenu_Controller_CatMenuController extends Tx_Extbase_MVC_Contro
 	public function listAction() {
 
 		$GLOBALS['TSFE']->reqCHash();
-
         $cat = NULL;
 
+        if($this->settings['showTitle']) {
+            $this->view->assign('listTitle', 1);
+        }
 
         if($_GET['tx_irfaq_pi1']['cat']){
             $noCat = 0;

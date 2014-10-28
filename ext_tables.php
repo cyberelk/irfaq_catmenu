@@ -59,4 +59,13 @@ $TCA['tx_irfaq_q']['columns']['cat']['config']['size'] = 30;
 $TCA['tx_irfaq_q']['columns']['cat']['config']['minitems'] = 0;
 $TCA['tx_irfaq_q']['columns']['cat']['config']['maxitems'] = 999;
 
+$pluginName='pi1'; // siehe Tx_Extbase_Utility_Extension::registerPlugin
+$extensionName = t3lib_div::underscoredToUpperCamelCase($_EXTKEY);
+$pluginSignature = strtolower($extensionName) . '_'.$pluginName;
+$TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
+t3lib_extMgm::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_pi1.xml');
+
+
+
+
 ?>
